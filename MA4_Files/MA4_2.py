@@ -18,7 +18,7 @@ def fib_numba(n):
 		return fib_numba(n-1) + fib_numba(n-2)
 
 def main():
-	n = [30, 35, 40]
+	n = [30, 35, 40, 43]
 	timeCPP = []
 	timeNJIT = []
 	timePy = []
@@ -28,16 +28,19 @@ def main():
 		f.fib()
 		end = pc()
 		timeCPP += [(end - start)]
-
+		print(1)
 		start = pc()
 		r = fib_numba(x)
 		end = pc()
 		timeNJIT += [(end - start)]
-
+		print(2)
 		start = pc()
 		c = fib_py(x)
 		end = pc()
 		timePy += [(end-start)]
+		print(3)
+		print(str(x) + ' is done')
+
 	nn = [20, 25, 30]
 	timeNJIT2 = []
 	timePy2 = []
@@ -52,26 +55,32 @@ def main():
 		end = pc()
 		timePy2 += [(end-start)]
 
-	f = Person(37)
+	f = Person(47)
 	start = pc()
 	f.fib()
 	end = pc()
 	t47cpp = (end - start)
 
 	start = pc()
-	t = fib_numba(37)
+	t = fib_numba(47)
 	end = pc()
 	t47numba = (end - start)
 
 	plt.figure(1)
-	plt.plot(timeCPP, n, color='red')
-	plt.plot(timeNJIT, n, color='blue')
-	plt.plot(timePy, n, color='green')
+	plt.plot(n, timeCPP, color='red')
+	plt.plot(n, timeNJIT, color='blue')
+	plt.plot(n, timePy, color='green')
+	plt.xlabel('n')
+	plt.ylabel('time (s)')
+	plt.title('Red=Cpp, Blue=Numba, Green=Py')
 	plt.savefig('Fig1.png')
 
 	plt.figure(2)
-	plt.plot(timeNJIT2, nn, color='blue')
-	plt.plot(timePy2, nn, color='green')
+	plt.plot(nn, timeNJIT2, color='blue')
+	plt.plot(nn, timePy2, color='green')
+	plt.xlabel('n')
+	plt.ylabel('time (s)')
+	plt.title('Blue=Numba, Green=Py')
 	plt.savefig('Fig2.png')
 
 if __name__ == '__main__':
