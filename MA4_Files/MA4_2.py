@@ -1,5 +1,5 @@
 #!/usr/bin/env python3.9
-
+# Student: Elis Uebel, Reviewed by: Martin Knebel, (17/10 -2022)
 from person import Person
 from time import perf_counter as pc
 from numba import njit
@@ -25,20 +25,20 @@ def main():
 	for x in n:
 		f = Person(x)
 		start = pc()
-		f.fib()
+		s = f.fib()
 		end = pc()
 		timeCPP += [(end - start)]
-		print(1)
+		print(s)
 		start = pc()
 		r = fib_numba(x)
 		end = pc()
 		timeNJIT += [(end - start)]
-		print(2)
+		print(r)
 		start = pc()
 		c = fib_py(x)
 		end = pc()
 		timePy += [(end-start)]
-		print(3)
+		print(c)
 		print(str(x) + ' is done')
 
 	nn = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
@@ -55,11 +55,15 @@ def main():
 		end = pc()
 		timePy2 += [(end-start)]
 
-	f = Person(47)
-	print(f.fib())
+	q = Person(47)
+	t = q.fib()
+	print(t)
+
 
 	t = fib_numba(47)
 	print(t)
+	#cpp = -1323752223, numba =  2971215073
+
 
 	plt.figure(1)
 	plt.plot(n, timeCPP, color='red')
@@ -80,3 +84,5 @@ def main():
 
 if __name__ == '__main__':
 	main()
+
+
