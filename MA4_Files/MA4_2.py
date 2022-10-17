@@ -18,7 +18,7 @@ def fib_numba(n):
 		return fib_numba(n-1) + fib_numba(n-2)
 
 def main():
-	n = [30, 35, 40, 43]
+	n = [30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45]
 	timeCPP = []
 	timeNJIT = []
 	timePy = []
@@ -41,7 +41,7 @@ def main():
 		print(3)
 		print(str(x) + ' is done')
 
-	nn = [20, 25, 30]
+	nn = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 	timeNJIT2 = []
 	timePy2 = []
 	for x in nn:
@@ -56,15 +56,10 @@ def main():
 		timePy2 += [(end-start)]
 
 	f = Person(47)
-	start = pc()
-	f.fib()
-	end = pc()
-	t47cpp = (end - start)
+	print(f.fib())
 
-	start = pc()
 	t = fib_numba(47)
-	end = pc()
-	t47numba = (end - start)
+	print(t)
 
 	plt.figure(1)
 	plt.plot(n, timeCPP, color='red')
